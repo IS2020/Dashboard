@@ -9,8 +9,6 @@ class Dashboard extends CI_Controller {
             redirect('login');
         }
         if($this->usuario->nivel==3)
-            redirect('Superadmin');
-        if($this->usuario->nivel==2)
             redirect('Admin');
         $this->load->model('mevento');
         $this->load->model('musuario');

@@ -17,24 +17,10 @@
           <div class="inner">
             <h3><?=$contador["escuelas"]?></h3>
 
-            <p>Escuelas registradas</p>
+            <p>Estaciones registradas</p>
           </div>
           <div class="icon">
-            <i class="fa fa-graduation-cap"></i>
-          </div>
-          <br>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-s-12">
-        <!-- small box -->
-        <div class="small-box bg-red">
-          <div class="inner">
-            <h3><?=$contador["eventos"]?></h3>
-
-            <p>Eventos registrados</p>
-          </div>
-          <div class="icon">
-            <i class="fa fa-calendar"></i>
+            <i class="fa fa-podcast"></i>
           </div>
           <br>
         </div>

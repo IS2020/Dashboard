@@ -7,7 +7,7 @@
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2018 <a href="#">TeamADOO</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a href="#">TeamIS2020</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->

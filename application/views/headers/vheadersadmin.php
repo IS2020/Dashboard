@@ -74,7 +74,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="<?=base_url()?>Superadmin" class="logo">
+    <a href="<?=base_url()?>Admin" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>G</b>ES</span>
       <!-- logo for regular state and mobile devices -->
@@ -135,21 +135,12 @@ desired effect
         <li class="header">Accesos directos</li>
         <li class="treeview">
           <a href="/">
-            <i class="fa fa-graduation-cap"></i>
-            <span>Escuelas</span>
+            <i class="fa fa-podcast"></i>
+            <span>Estaciones</span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url()?>Superadmin/escuelas/crear"><i class="fa fa-plus"></i> Nueva escuela</a></li>
-            <li><a href="<?=base_url()?>Superadmin/escuelas"><i class="fa fa-list"></i> Lista de escuelas</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="/">
-            <i class="fa fa-calendar"></i>
-            <span>Eventos</span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?=base_url()?>Superadmin/eventos"><i class="fa fa-list"></i> Lista de eventos</a></li>
+            <li><a href="#"><i class="fa fa-plus"></i> Nueva estacion</a></li>
+            <li><a href="#"><i class="fa fa-list"></i> Lista de estaciones</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -158,7 +149,7 @@ desired effect
             <span>Usuarios</span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url()?>Superadmin/usuarios"><i class="fa fa-list"></i> Lista de usuarios</a></li>
+            <li><a href="<?=base_url()?>Admin/usuarios"><i class="fa fa-list"></i> Lista de usuarios</a></li>
           </ul>
         </li>
       </ul>

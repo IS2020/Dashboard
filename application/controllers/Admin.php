@@ -9,9 +9,10 @@ class Admin extends CI_Controller {
 		if(!$this->usuario){
 			redirect('dashboard');
 		}
-		if($this->usuario->nivel!=2){
+		if($this->usuario->nivel!=3){
 			redirect('dashboard');
 		}
+		$this->load->model('msuperadmin');
 		$this->load->model('musuario');
 		$this->load->model('mescuela');
 		$this->load->model('mevento');
@@ -19,146 +20,149 @@ class Admin extends CI_Controller {
   	}
 	public function index(){
 		$usuario = $this->usuario;
-		$escuela = $this->mescuela->getEscuelaByAdmin($usuario->id_usuario);
-		if(!$escuela)
-			return;
-
-		$eventos = $this->mevento->getEventosByEscuela($escuela->id_escuela);
+		$contadorAll = $this->msuperadmin->countAll();
 		$name = $this->musuario->getName($usuario->id_usuario);
+
 		$data = array("title"=>"Admin Dashboard");
 		$data["name"] = $name["nombre"]." ".$name["appat"];
-    $data["eventos"] = $eventos;
+		$data["contador"] = $contadorAll;
 
-		$this->load->view("headers/vheaderadmin",$data);
-		$this->load->view('Admin/vdashboard');
+		$this->load->view("headers/vheadersadmin",$data);
+		$this->load->view('SuperAdmin/vdashboard');
         $this->load->view('footers/vfooter');
 	}
 	public function eventos_index(){
 		$usuario = $this->usuario;
 		$name = $this->musuario->getName($usuario->id_usuario);
-		$escuela = $this->mescuela->getEscuelaByAdmin($usuario->id_usuario);
-		$eventos = $this->mevento->getEventosByEscuela($escuela->id_escuela);
+		$eventos = $this->mevento->getAllEventos();
 
-		$data = array("title"=>"Admin Dashboard");
+		$data = array("title"=>"Super Admin Dashboard");
 		$data["name"] = $name["nombre"]." ".$name["appat"];
 		$data["eventos"] = $eventos;
 
-		$this->load->view("headers/vheaderadmin",$data);
-		$this->load->view('Admin/vlistaeventos');
+		$this->load->view("headers/vheadersadmin",$data);
+		$this->load->view('SuperAdmin/vlistaeventos');
 		return;
 	}
-  public function eventos_crear(){
-    $usuario = $this->usuario;
-    $name = $this->musuario->getName($usuario->id_usuario);
+	public function escuelas_index(){
+		$usuario = $this->usuario;
+		$name = $this->musuario->getName($usuario->id_usuario);
+		$escuelas = $this->mescuela->getEscuelas();
 
-    $data = array("title"=>"Admin Dashboard");
-    $data["name"] = $name["nombre"]." ".$name["appat"];
+		$data = array("title"=>"Super Admin Dashboard");
+		$data["name"] = $name["nombre"]." ".$name["appat"];
+		$data["escuelas"] = $escuelas;
 
-    $this->load->view('headers/vheaderadmin',$data);
-    $this->load->view('Admin/vformevento');
-    $this->load->view('footers/vfooter');
-  }
+		$this->load->view("headers/vheadersadmin",$data);
+		$this->load->view('SuperAdmin/vlistaescuelas');
+        $this->load->view('footers/vfooter');
+	}
+	public function escuelas_crear(){
+		$usuario = $this->usuario;
+		$name = $this->musuario->getName($usuario->id_usuario);
+		$name = $this->musuario->getName($usuario->id_usuario);
+		$escuelas = $this->mescuela->getEscuelas();
 
-  public function eventos_editar($idEvento){
-      $usuario = $this->usuario;
-      $name = $this->musuario->getName($usuario->id_usuario);
-      $data1 = array("title"=>"Admin Dashboard");
-      $data1["name"] = $name["nombre"]." ".$name["appat"];
+		$data = array("title"=>"Super Admin Dashboard");
+		$data["name"] = $name["nombre"]." ".$name["appat"];
 
-      $evento= $this->mevento->getEvento($idEvento);
-      if($this->mescuela->getEscuelaByAdmin($usuario->id_usuario)->id_escuela!=$evento->escuela)
-        redirect("Admin");
-      $data = array("title"=>"EVENTOS");
-      $data["evento"] = $evento;
-      $this->load->view('headers/vheaderadmin',$data1);
-      $this->load->view('Admin/vformeventoEDIT',$data);
-      $this->load->view('footers/vfooter');
-  }
+		$this->load->view("headers/vheadersadmin",$data);
+		$this->load->view('SuperAdmin/vformescuela');
+        $this->load->view('footers/vfooter');
+	}
+	public function usuarios(){
+		$usuario = $this->usuario;
+		$name = $this->musuario->getName($usuario->id_usuario);
+		$usuarios = $this->msuperadmin->getUsuarios();
 
-  public function dob_check($str){
-    if (!DateTime::createFromFormat('Y-m-d', $str)) { //yes it's YYYY-MM-DD
-        $this->form_validation->set_message('dob_check', 'The {field} has not a valid date format');
-        return FALSE;
-    } else {
-        return TRUE;
-    }
-}
-  public function ajax_create_evento(){
-      $respuesta = Array();
-      $usuario = $this->usuario;
-      $id = $usuario->id_usuario;
-      header('Content-Type: application/json');
-  		if(!$this->input->post()){
-        $respuesta["codigo"] = 1;
-  			$respuesta["respuesta"] = "Sin parametros";
-        $respuesta["errores"] = "Sin parametros!";
-        echo json_encode($respuesta);
-        return;
-  		}
-      $this->form_validation->set_rules('nombre_evento','Nombre Evento','required');
-      $this->form_validation->set_rules('descripcion','Descripcion','required');
-      $this->form_validation->set_rules('fecha','Fecha','required|callback_dob_check');
-      $this->form_validation->set_rules('hora_inicio','Hora','required|trim|min_length[7]|max_length[8]');
-      $this->form_validation->set_rules('boletos', 'Numero de boletos', 'required|regex_match[/^[1-9]{1}[0-9]{0,5}$/]');
-      $this->form_validation->set_data($this->input->post());
+		$data = array("title"=>"Super Admin Dashboard");
+		$data["name"] = $name["nombre"]." ".$name["appat"];
+		$data["usuarios"] = $usuarios;
 
-      $validate = $this->form_validation->run();
-        if(!$validate){
-          $respuesta["codigo"] = 2;
-  				$respuesta["respuesta"] = "Te hace falta llenar algunos campos";
-  				$respuesta["errores"] = validation_errors();
-          echo json_encode($respuesta);
-          return;
-        }
-        $data = $this->input->post();
+		$this->load->view("headers/vheadersadmin",$data);
+		$this->load->view('SuperAdmin/vlistausuarios');
+        $this->load->view('footers/vfooter');
+	}
+	public function ajax_crear_escuela(){
+		$respuesta = Array();
 
-        if(date('Y-m-d')>date('Y-m-d',strtotime($data['fecha']))){
-          $respuesta["codigo"] = 1;
-  				$respuesta["respuesta"] = "La fecha del evento no es valida.";
-  				$respuesta["errores"] = Array("El evento tiene fecha mayor o igual al día de hoy.");
-          echo json_encode($respuesta);
-          return;
-        }
-        if (!empty($_FILES['foto']['name'])){
-          $nombreArchivo = $id."_".date("dmYHis")."_".md5(getDate()[0]);
-          # Configuración de la librería "upload"
-          $config['upload_path']   = './assets/eventos/fotos/';
-          $config['allowed_types'] = 'jpg|png|jpeg|JPG|PNG|JPEG';
-          $config['file_name'] = $nombreArchivo;
-          $config['file_ext_tolower'] = false;
-          $config['overwrite'] = true;
-          $config['max_size'] = 10240;
-          $config['remove_spaces'] = true;
-          $this->load-> library('upload', $config);
-          if (!($this->upload ->do_upload('foto'))){
-            $respuesta['codigo'] = "1";
-            $respuesta["respuesta"] = "Error al subir la imagen!";
-            $respuesta["errores"] = $this->upload->display_errors();
-            echo json_encode($respuesta);
-            return;
-          }else{
-            $nombreArchivo = $this->upload->data()["file_name"];
-          }
-        }else{
-          $nombreArchivo = "default.jpg";
-        }
-        $data["escuela"] = $this->mescuela->getEscuelaByAdmin($usuario->id_usuario)->id_escuela;
-        $data["foto"] = $nombreArchivo;
-        $result =  $this->mevento->addEvento($data);
-        if($result){
-          $respuesta["codigo"] = 0;
-  				$respuesta["respuesta"] = "Sin errores";
-  				$respuesta["errores"] = Array();
-        }else{
-          $respuesta["codigo"] = 3;
-  				$respuesta["respuesta"] = "No se pudo crear el evento!";
-  				$respuesta["errores"] = "<p>No se pudo crear el evento :(</p>";
-        }
-		    echo json_encode($respuesta);
-  }
+
+
+		if(!$this->input->post()){
+			$respuesta["codigo"] = 1;
+			$respuesta["respuesta"] = "Sin parametros";
+		}
+		else{
+			//Validaciones de lo que llega del formulario
+			$this->form_validation->set_rules('escuela', 'Escuela', 'required');
+			$this->form_validation->set_rules('dir1', 'Direccion 1', 'required');
+			$this->form_validation->set_rules('dir2', 'Direccion 2', 'required');
+			$this->form_validation->set_rules('correo_escuela', 'Correo Escuela', 'required|valid_email');
+
+			$this->form_validation->set_rules('nombre', 'Nombre', 'required');
+			$this->form_validation->set_rules('username', 'Username', 'required');
+			$this->form_validation->set_rules('correo_admin', 'Correo Administrador', 'required|valid_email');
+			$this->form_validation->set_rules('password', 'Contraseña', 'required');
+			$this->form_validation->set_rules('password2', 'Repetir Contraseña', 'required|matches[password]');
+			$this->form_validation->set_data($this->input->post());
+
+			$validate = $this->form_validation->run();
+			if(!$validate){
+				$respuesta["codigo"] = 2;
+				$respuesta["respuesta"] = "Te hace falta llenar algunos campos";
+				$respuesta["errores"] = validation_errors();
+			}else{
+				$r = $this->input->post();
+				$pass = true;
+				$respuesta["errores"] = "";
+				if($this->musuario->existUsername("Admin_".$r["username"])){
+					$pass = false;
+					$respuesta["errores"] = $respuesta["errores"]."<br><p>Ya existe este usuario</p>";
+				}
+				if($this->musuario->existEmail($r["correo_admin"])){
+					$pass = false;
+					$respuesta["errores"] = $respuesta["errores"]."<br><p>Ya esta registrado este correo</p>";
+				}
+				if(!$pass){
+					$respuesta["codigo"] = 2;
+					$respuesta["respuesta"] = "Ya existe el correo o el usuario";
+				}
+				else{
+
+					$escuela = Array(
+						"nombre"		=> $r["escuela"],
+						"direccion1"	=> $r["dir1"],
+						"direccion2"	=> $r["dir2"],
+					);
+					$admin = Array(
+						"username"		=> $r["username"],
+						"correo"		=> $r["correo_admin"],
+						"password"		=> $r["password"],
+						"nombre"		=> $r["nombre"],
+					);
+					$result = $this->msuperadmin->crearEscuela($escuela,$admin);
+					if($result){
+
+						$respuesta["codigo"] = 0;
+						$respuesta["respuesta"] = "Sin errores";
+						$respuesta["errores"] = Array();
+					}
+					else{
+						$respuesta["codigo"] = 3;
+						$respuesta["respuesta"] = "No se pudo insertar la escuela";
+						$respuesta["errores"] = "<p>No se pudo crear la escuela :(</p>";
+					}
+				}
+			}
+		}
+   		header('Content-Type: application/json');
+		echo json_encode($respuesta);
+	}
+	public function borrarEscuela(){
+		echo $this->mescuela->borrarEscuela(1);
+	}
 	public function ajax_delete_evento(){
 		$respuesta = Array();
-    $usuario = $this->usuario;
 		if(!$this->input->post()){
 			$respuesta["codigo"] = 1;
 			$respuesta["respuesta"] = "Sin parametros";
@@ -167,99 +171,22 @@ class Admin extends CI_Controller {
 			$this->form_validation->set_data($this->input->post());
 			if(!$this->form_validation->run()){
 				$respuesta["codigo"] = 2;
-				$respuesta["respuesta"] = "Falta el id del evento";
+				$respuesta["respuesta"] = "Falta el id de la escuela";
 				$respuesta["errores"] = validation_errors();
 			}else{
-				$id_evento = $this->input->post()["evento"];
-        $escuela = $this->mescuela->getEscuelaByAdmin($usuario->id_usuario);
-        $evento = $this->mevento->getEvento($id_evento);
-        if($evento->id_evento !=$id_evento){
-          $respuesta["codigo"] = 1;
-          $respuesta["respuesta"] = "No se pudo borrar el evento";
-          $respuesta["errores"] = Array("No se pudo borrar el evento");
-        }else{
-  				if($this->mevento->deleteEvento($id_evento)){
-  					$respuesta["codigo"] = 0;
-  					$respuesta["respuesta"] = "Evento borrado con exito";
-  					$respuesta["errores"] = Array();
-  				}else{
-  					$respuesta["codigo"] = 1;
-  					$respuesta["respuesta"] = "No se pudo borrar el evento";
-  					$respuesta["errores"] = Array("No se pudo borrar el evento");
-  				}
-        }
+				$evento = $this->input->post()["evento"];
+				if($this->mevento->deleteEvento($evento)){
+					$respuesta["codigo"] = 0;
+					$respuesta["respuesta"] = "Evento borrado con exito";
+					$respuesta["errores"] = Array();
+				}else{
+					$respuesta["codigo"] = 1;
+					$respuesta["respuesta"] = "No se pudo borrar el evento";
+					$respuesta["errores"] = Array("No se pudo borrar el evento");
+				}
 			}
 		}
    	  header('Content-Type: application/json');
  	  echo json_encode($respuesta);
-
 	}
-  public function ajax_edit_evento(){
-      $respuesta = Array();
-      $usuario = $this->usuario;
-      $id = $usuario->id_usuario;
-      header('Content-Type: application/json');
-  		if(!$this->input->post()){
-        $respuesta["codigo"] = 1;
-  			$respuesta["respuesta"] = "Sin parametros";
-        $respuesta["errores"] = "Sin parametros!";
-        echo json_encode($respuesta);
-        return;
-  		}
-      $this->form_validation->set_rules('nombre_evento','Nombre Evento','required');
-      $this->form_validation->set_rules('descripcion','Descripcion','required');
-      $this->form_validation->set_rules('fecha','Fecha','required|callback_dob_check');
-      $this->form_validation->set_rules('hora_inicio','Hora','required|trim|min_length[7]|max_length[8]');
-      $this->form_validation->set_data($this->input->post());
-
-      $validate = $this->form_validation->run();
-        if(!$validate){
-          $respuesta["codigo"] = 2;
-  				$respuesta["respuesta"] = "Te hace falta llenar algunos campos";
-  				$respuesta["errores"] = validation_errors();
-          echo json_encode($respuesta);
-          return;
-        }
-        $data = $this->input->post();
-        if(date('Y-m-d')>date('Y-m-d',strtotime($data['fecha']))){
-          $respuesta["codigo"] = 1;
-  				$respuesta["respuesta"] = "La fecha del evento no es valida.";
-  				$respuesta["errores"] = Array("El evento tiene fecha mayor o igual al día de hoy.");
-          echo json_encode($respuesta);
-          return;
-        }
-        if (!empty($_FILES['foto']['name'])){
-          $nombreArchivo = $id."_".date("dmYHis")."_".md5(getDate()[0]);
-          # Configuración de la librería "upload"
-          $config['upload_path']   = './assets/eventos/fotos/';
-          $config['allowed_types'] = 'jpg|png|jpeg|JPG|PNG|JPEG';
-          $config['file_name'] = $nombreArchivo;
-          $config['file_ext_tolower'] = false;
-          $config['overwrite'] = true;
-          $config['max_size'] = 10240;
-          $config['remove_spaces'] = true;
-          $this->load-> library('upload', $config);
-          if (!($this->upload ->do_upload('foto'))){
-            $respuesta['codigo'] = "1";
-            $respuesta["respuesta"] = "Error al subir la imagen!";
-            $respuesta["errores"] = $this->upload->display_errors();
-            echo json_encode($respuesta);
-            return;
-          }else{
-            $data["foto"] = $this->upload->data()["file_name"];
-          }
-        }
-        $data["escuela"] = $this->mescuela->getEscuelaByAdmin($usuario->id_usuario)->id_escuela;
-        $result =  $this->mevento->EditarEvento($data);
-        if($result){
-          $respuesta["codigo"] = 0;
-  				$respuesta["respuesta"] = "Sin errores";
-  				$respuesta["errores"] = Array();
-        }else{
-          $respuesta["codigo"] = 3;
-  				$respuesta["respuesta"] = "No se pudo crear el evento!";
-  				$respuesta["errores"] = "<p>No se pudo crear el evento :(</p>";
-        }
-		    echo json_encode($respuesta);
-  }
 }
