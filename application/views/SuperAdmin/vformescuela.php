@@ -37,7 +37,7 @@
           <h4 class="modal-title">Finalizado!</h4>
         </div>
         <div class="modal-body">
-          <p>La escuela ha sido registrada con exito!</p>
+          <p>La antena ha sido registrada con exito!</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline pull-left" id="success" data-dismiss="modal">Cerrar</button>
@@ -67,7 +67,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form id="escuela-form">
+              <form id="antena-form">
               <div>
               <h3>Datos de la antena</h3>
               <h4>Nombre representativo</h4>
@@ -107,11 +107,10 @@
 <script src="<?=base_url()?>assets/dist/js/demo.js"></script>
 <script>
   $(function () {
-    $('#escuelas').DataTable();
     $('#success').on('click',function(){
       $(location).attr('href', '<?=base_url()?>Admin')
     });
-    $("#escuela-form").submit(function(e){
+    $("#antena-form").submit(function(e){
       e.preventDefault();
       var location = lp.getMarkerPosition();
       $("#lat").val(location.lat);

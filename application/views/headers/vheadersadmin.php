@@ -76,9 +76,9 @@ desired effect
     <!-- Logo -->
     <a href="<?=base_url()?>Admin" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>G</b>ES</span>
+      <span class="logo-mini"><b>G</b>S</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Ges</b>Eventos</span>
+      <span class="logo-lg"><b>Ges</b>Sismos</span>
     </a>
 
     <!-- Header Navbar -->
@@ -139,7 +139,7 @@ desired effect
             <span>Estaciones</span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?base_url()?>Admin/antenas_crear"><i class="fa fa-plus"></i> Nueva estacion</a></li>
+            <li><a href="<?=base_url()?>Admin/antenas_crear"><i class="fa fa-plus"></i> Nueva estacion</a></li>
             <li><a href="#"><i class="fa fa-list"></i> Lista de estaciones</a></li>
           </ul>
         </li>
