@@ -16,6 +16,7 @@ class Admin extends CI_Controller {
 		$this->load->model('musuario');
 		$this->load->model('mescuela');
 		$this->load->model('mevento');
+		$this->load->model('mantena');
 		$this->load->library('form_validation');
   	}
 	public function index(){
@@ -34,7 +35,7 @@ class Admin extends CI_Controller {
 	public function eventos_index(){
 		$usuario = $this->usuario;
 		$name = $this->musuario->getName($usuario->id_usuario);
-		$eventos = $this->mevento->getAllEventos();
+		$eventos = $this->mantena->getAllAntenas();
 
 		$data = array("title"=>"Super Admin Dashboard");
 		$data["name"] = $name["nombre"]." ".$name["appat"];
@@ -57,18 +58,16 @@ class Admin extends CI_Controller {
 		$this->load->view('SuperAdmin/vlistaescuelas');
         $this->load->view('footers/vfooter');
 	}
-	public function escuelas_crear(){
+	public function antenas_crear(){
 		$usuario = $this->usuario;
 		$name = $this->musuario->getName($usuario->id_usuario);
-		$name = $this->musuario->getName($usuario->id_usuario);
-		$escuelas = $this->mescuela->getEscuelas();
 
-		$data = array("title"=>"Super Admin Dashboard");
+		$data = array("title"=>"Admin Dashboard");
 		$data["name"] = $name["nombre"]." ".$name["appat"];
 
 		$this->load->view("headers/vheadersadmin",$data);
 		$this->load->view('SuperAdmin/vformescuela');
-        $this->load->view('footers/vfooter');
+    $this->load->view('footers/vfooter');
 	}
 	public function usuarios(){
 		$usuario = $this->usuario;
@@ -83,7 +82,7 @@ class Admin extends CI_Controller {
 		$this->load->view('SuperAdmin/vlistausuarios');
         $this->load->view('footers/vfooter');
 	}
-	public function ajax_crear_escuela(){
+	public function ajax_crear_antena(){
 		$respuesta = Array();
 
 
@@ -94,16 +93,10 @@ class Admin extends CI_Controller {
 		}
 		else{
 			//Validaciones de lo que llega del formulario
-			$this->form_validation->set_rules('escuela', 'Escuela', 'required');
-			$this->form_validation->set_rules('dir1', 'Direccion 1', 'required');
-			$this->form_validation->set_rules('dir2', 'Direccion 2', 'required');
-			$this->form_validation->set_rules('correo_escuela', 'Correo Escuela', 'required|valid_email');
-
 			$this->form_validation->set_rules('nombre', 'Nombre', 'required');
-			$this->form_validation->set_rules('username', 'Username', 'required');
-			$this->form_validation->set_rules('correo_admin', 'Correo Administrador', 'required|valid_email');
-			$this->form_validation->set_rules('password', 'Contraseña', 'required');
-			$this->form_validation->set_rules('password2', 'Repetir Contraseña', 'required|matches[password]');
+			$this->form_validation->set_rules('lat', 'Latitud', 'required');
+			$this->form_validation->set_rules('lon', 'Longitud', 'required');
+
 			$this->form_validation->set_data($this->input->post());
 
 			$validate = $this->form_validation->run();
@@ -115,42 +108,26 @@ class Admin extends CI_Controller {
 				$r = $this->input->post();
 				$pass = true;
 				$respuesta["errores"] = "";
-				if($this->musuario->existUsername("Admin_".$r["username"])){
+				if($this->mantena->exist($r["nombre"])){
 					$pass = false;
-					$respuesta["errores"] = $respuesta["errores"]."<br><p>Ya existe este usuario</p>";
-				}
-				if($this->musuario->existEmail($r["correo_admin"])){
-					$pass = false;
-					$respuesta["errores"] = $respuesta["errores"]."<br><p>Ya esta registrado este correo</p>";
-				}
-				if(!$pass){
-					$respuesta["codigo"] = 2;
-					$respuesta["respuesta"] = "Ya existe el correo o el usuario";
+					$respuesta["errores"] = $respuesta["errores"]."<br><p>Ya existe esta antena</p>";
 				}
 				else{
-
-					$escuela = Array(
-						"nombre"		=> $r["escuela"],
-						"direccion1"	=> $r["dir1"],
-						"direccion2"	=> $r["dir2"],
-					);
-					$admin = Array(
-						"username"		=> $r["username"],
-						"correo"		=> $r["correo_admin"],
-						"password"		=> $r["password"],
+					$antena = Array(
 						"nombre"		=> $r["nombre"],
+						"lat"	=> $r["lat"],
+						"lon"	=> $r["lon"],
 					);
-					$result = $this->msuperadmin->crearEscuela($escuela,$admin);
+					$result = $this->mantena->create($antena);
 					if($result){
-
 						$respuesta["codigo"] = 0;
 						$respuesta["respuesta"] = "Sin errores";
 						$respuesta["errores"] = Array();
 					}
 					else{
 						$respuesta["codigo"] = 3;
-						$respuesta["respuesta"] = "No se pudo insertar la escuela";
-						$respuesta["errores"] = "<p>No se pudo crear la escuela :(</p>";
+						$respuesta["respuesta"] = "No se puede crear la antena";
+						$respuesta["errores"] = "<p>No se pudo crear la antena :(</p>";
 					}
 				}
 			}

@@ -1,4 +1,14 @@
  <!-- Mensaje de alerta-->
+ <style type="text/css">
+  #map {
+    width: 50%;
+    height: 480px;
+      margin-left: 25%;
+  }
+</style>
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoVLg-qh7i0lDSWbgh8Wzp-PgXFF0aaqg"></script>
+<script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
   <div class="modal modal-danger fade" id="modal-danger">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -53,60 +63,25 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Crear nueva escuela</h3>
+              <h3 class="box-title">Crear nueva antena</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <form id="escuela-form">
               <div>
-              <h3>Datos de la escuela</h3>
-              <h4>Nombre de la escuela</h4>
+              <h3>Datos de la antena</h3>
+              <h4>Nombre representativo</h4>
               <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
-                <input type="text" class="form-control" placeholder="Escuela #12" name="escuela">
+                <span class="input-group-addon"><i class="fa fa-podcast"></i></span>
+                <input type="text" class="form-control" placeholder="Nombre de la antena" name="nombre">
               </div>
-              <h4>Direccion 1</h4>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
-                <input type="text" class="form-control" placeholder="Av Juan de Dios SN" name="dir1">
-              </div>
-              <h4>Direccion 2</h4>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
-                <input type="text" class="form-control" placeholder="Entre la calle 1 y 2" name="dir2">
-              </div>
-              <h4>Correo electrónico (escuela)</h4>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                <input type="text" class="form-control" placeholder="escuela@ejemplo.com" name="correo_escuela">
-              </div>
-              <h3>Datos del administrador</h3>
-              <h4>Nombre</h4>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control" placeholder="Jack Cloudman" name="nombre">
-              </div>
-              <h4>Nombre de usuario</h4>
-              <div class="input-group">
-                <span class="input-group-addon">@Admin_</span>
-                <input type="text" class="form-control" placeholder="Username" name="username">
-              </div>
-              <h4>Correo electrónico (administrador)</h4>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                <input type="text" class="form-control" placeholder="administrador@ejemplo.com" name="correo_admin">
-              </div>
-              <h4>Contraseña</h4>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input type="password" class="form-control" placeholder="Contraseña" name="password">
-              </div>
-              <h4>Repetir contraseña</h4>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input type="password" class="form-control" placeholder="Repite la contraseña" name="password2">
-              </div>
-              <br>
+              <input type="hidden" class="form-control" placeholder="Latitud" name="lat" id="lat">
+              <input type="hidden" class="form-control" placeholder="Longitud" name="lon" id="lon">
+                  <br>
+
+              <div id="map"></div>
+                  <br>
+
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </form>
@@ -134,12 +109,15 @@
   $(function () {
     $('#escuelas').DataTable();
     $('#success').on('click',function(){
-      $(location).attr('href', '<?=base_url()?>Superadmin/escuelas')
+      $(location).attr('href', '<?=base_url()?>Admin')
     });
     $("#escuela-form").submit(function(e){
       e.preventDefault();
+      var location = lp.getMarkerPosition();
+      $("#lat").val(location.lat);
+      $("#lon").val(location.lng);
       $.ajax({
-        url: "<?=base_url()?>Superadmin/ajax_crear_escuela",
+        url: "<?=base_url()?>Admin/ajax_crear_antena",
         type: "post",
         dataType:'json',
         cache : false,
@@ -158,4 +136,17 @@
       });
     });
   })
+</script>
+<script>
+  // Get element references
+  var map = document.getElementById('map');
+
+  // Initialize LocationPicker plugin
+  var lp = new locationPicker(map, {
+    setCurrentPosition: true, // You can omit this, defaults to true
+    lat: 19.504503,
+    lng: -99.146977
+  }, {
+    zoom: 18 // You can set any google map options here, zoom defaults to 15
+  });
 </script>

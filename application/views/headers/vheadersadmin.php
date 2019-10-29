@@ -139,7 +139,7 @@ desired effect
             <span>Estaciones</span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-plus"></i> Nueva estacion</a></li>
+            <li><a href="<?base_url()?>Admin/antenas_crear"><i class="fa fa-plus"></i> Nueva estacion</a></li>
             <li><a href="#"><i class="fa fa-list"></i> Lista de estaciones</a></li>
           </ul>
         </li>

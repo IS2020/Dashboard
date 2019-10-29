@@ -52,10 +52,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+//GET
+
+$route['Admin/'] = 'Admin/eventos_index';
+$route['Admin/crear/'] = 'Admin/antenas_crear';
+
+// POST
+
+$route['Admin/ajax_crear_antena'] = 'Admin/ajax_crear_antena';
+
+
+// OTRO
 //$route['Superadmin/escuelas'] = 'Superadmin/escuelas_index';
 //$route['Superadmin/escuelas/crear'] = 'Superadmin/escuelas_crear';
 //$route['Superadmin/eventos'] = 'Superadmin/eventos_index';
-$route['Admin/'] = 'Admin/eventos_index';
 //$route['Admin/eventos/crear'] = 'Admin/eventos_crear';
 //$route['Admin/eventos/editar/(:any)'] = 'Admin/eventos_editar/$1';
 //$route['Evento/ajax_inscribir'] = "Evento/ajax_inscribir";

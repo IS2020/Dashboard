@@ -15,7 +15,7 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
           <div class="inner">
-            <h3><?=$contador["escuelas"]?></h3>
+            <h3><?=$contador["antenas"]?></h3>
 
             <p>Estaciones registradas</p>
           </div>
