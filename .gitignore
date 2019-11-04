@@ -5,3 +5,4 @@ assets/eventos/fotos/*.JPG
 assets/eventos/fotos/*.PNG
 assets/eventos/fotos/*.JPEG
 vendor
+.idea/*
