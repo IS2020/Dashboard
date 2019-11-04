@@ -22,11 +22,13 @@ class Admin extends CI_Controller {
 	public function index(){
 		$usuario = $this->usuario;
 		$contadorAll = $this->msuperadmin->countAll();
+    $antenas = $this->mantena->getAllAntenas();
 		$name = $this->musuario->getName($usuario->id_usuario);
 
 		$data = array("title"=>"Admin Dashboard");
 		$data["name"] = $name["nombre"]." ".$name["appat"];
 		$data["contador"] = $contadorAll;
+    $data["antenas"] = $antenas;
 
 		$this->load->view("headers/vheadersadmin",$data);
 		$this->load->view('SuperAdmin/vdashboard');
@@ -44,19 +46,6 @@ class Admin extends CI_Controller {
 		$this->load->view("headers/vheadersadmin",$data);
 		$this->load->view('SuperAdmin/vlistaeventos');
 		return;
-	}
-	public function escuelas_index(){
-		$usuario = $this->usuario;
-		$name = $this->musuario->getName($usuario->id_usuario);
-		$escuelas = $this->mescuela->getEscuelas();
-
-		$data = array("title"=>"Super Admin Dashboard");
-		$data["name"] = $name["nombre"]." ".$name["appat"];
-		$data["escuelas"] = $escuelas;
-
-		$this->load->view("headers/vheadersadmin",$data);
-		$this->load->view('SuperAdmin/vlistaescuelas');
-        $this->load->view('footers/vfooter');
 	}
 	public function antenas_crear(){
 		$usuario = $this->usuario;
