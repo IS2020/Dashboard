@@ -31,7 +31,7 @@ class Admin extends CI_Controller {
     $data["antenas"] = $antenas;
 
 		$this->load->view("headers/vheadersadmin",$data);
-		$this->load->view('SuperAdmin/vdashboard');
+		$this->load->view("SuperAdmin/vdashboard");
         $this->load->view('footers/vfooter');
 	}
 	public function eventos_index(){
