@@ -39,7 +39,7 @@
                 <th>
                   <h4>
                   <a href="<?=base_url()?>Admin/estadisticas/<?= $a->id_antena?>" id="verEstadisticas">
-                    <i class="fa fa-eye" data-antena="<?=$a->id_antena;?>"></i>
+                    <i class="fa fa-bar-chart" data-antena="<?=$a->id_antena;?>"></i>
                   </a>
                   <i class= "fa fa-pencil"></i>
                   <i class= "fa fa-trash"></i>

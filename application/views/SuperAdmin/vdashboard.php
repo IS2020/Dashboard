@@ -61,7 +61,6 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <div id="imap">
     <div id="map">
         <!-- Ici s'affichera la carte -->
     </div>
@@ -101,7 +100,9 @@
           maxZoom: 20
       }).addTo(macarte);
       <?php foreach ($antenas as $a) {?>
-      L.marker([<?=$a->lat?>,<?=$a->lon?>],{title:'<?=$a->nombre?>'}).addTo(macarte);
+      L.marker([<?=$a->lat?>,<?=$a->lon?>],{title:'<?=$a->nombre?>'}).addTo(macarte).on('click', function(e) {
+        window.location.replace("<?=base_url().'Admin/estadisticas/'.$a->id_antena?>");
+});
       <?}?>
   }
 

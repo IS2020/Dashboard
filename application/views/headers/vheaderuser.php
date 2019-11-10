@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>GesEventos |  <?=$title?></title>
+  <title>GesSismos |  <?=$title?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=4, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -18,6 +18,11 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/skins/_all-skins.min.css">
   <script src="<?=base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- AdminLTE App -->
+<script src="<?=base_url()?>assets/dist/js/adminlte.min.js"></script>
+<!-- FastClick -->
+<script src="<?=base_url()?>assets/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="<?=base_url()?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,7 +40,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="<?=base_url()?>Dashboard" class="navbar-brand"><b>Ges</b>Eventos</a>
+          <a href="<?=base_url()?>Dashboard" class="navbar-brand"><b>Ges</b>Sismos</a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -43,83 +48,40 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?=base_url()?>Calendar"><i class="fa fa-calendar"></i> Calendario</a></li>
             <li><a href="<?=base_url()?>Documentacion"><i class="fa fa-book"></i> Documentacion</a></li>
           </ul>
-          <form id="search" method="POST" class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar">
-            </div>
-          </form>
         </div>
-        <script>
-        $(document).ready(function() {
-            $("#search").on("submit",function(e){
-              e.preventDefault()
-              window.location.href = "<?=base_url()?>Evento/buscar/"+$("#busqueda").val();
-            });
-        });
-        </script>
         <!-- /.navbar-collapse -->
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
 
-            <!-- NAV DE EVENTOS--->
-            <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-history"></i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">Tus eventos</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <?php foreach ($my_events as $event) {?>
-                  <li><!-- start message -->
-                    <a href="<?php echo base_url();?>Evento/<?php echo $event->id_evento;?>">
-                      <div class="pull-left">
-                        <img src="<?=base_url()?>assets/eventos/fotos/<?=$event->foto?>" class="img-circle" alt="User Image">
-                      </div>
-                      <h4><?php echo $event ->nombre_evento ?>
-              
-                        <small><i class="fa fa-calendar"></i> <?php echo $event ->fecha?></small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                  <?php } ?>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">Memento mori</a></li>
-            </ul>
-          </li>
             <!-- FIN NAV EVENTOS--->
             <!-- User Account Menu -->
             <li class="dropdown user user-menu">
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="<?=base_url()?>assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <img src="<?=base_url()?>assets/dist/img/avatar.png" style="background:#FFF" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs"><?php echo $head['nombre']; ?></span>
+                <span class="hidden-xs"><?php echo $name;?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                  <img src="<?=base_url()?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <img src="<?=base_url()?>assets/dist/img/avatar.png" style="background:#FFF" class="img-circle" alt="User Image">
 
                   <p>
-                    <?php echo $head['nombre']." " .$head['appat']. " ".$head['apmat']; ?>
+                    <?php echo $name; ?>
                   </p>
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                  <div class="pull-right">
+                  <center>
+                  <div>
                     <a href="<?=base_url()?>login/salir" class="btn btn-default btn-flat">Cerrar sesion</a>
                   </div>
+                </cener>
                 </li>
               </ul>
             </li>

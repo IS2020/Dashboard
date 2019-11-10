@@ -10,23 +10,42 @@ class Dashboard extends CI_Controller {
         }
         if($this->usuario->nivel==3)
             redirect('Admin');
-        $this->load->model('mevento');
         $this->load->model('musuario');
+        $this->load->model('mantena');
     }
     public function index()
     {
         $usuario = $this->usuario;
+
+        $antenas = $this->mantena->getAllAntenas();
         $datos['title'] = "Dashboard";
-        $datos['head'] =$this->musuario->getName($usuario->id_usuario);
-        $datos['eventos'] = $this->mevento->infoPorEvento();
-        $datos['my_events'] = $this->mevento->obtain_events_user($usuario->id_usuario);
+        $datos["name"] = $usuario->nombre." ".$usuario->appat;
+        $datos['antenas'] = $antenas;
         $this->load->view('headers/vheaderuser',$datos);
         $this->load->view('Guest/vdashboard');
         $this->load->view('footers/vfooter');
     }
-    public function lista_eventos()
-    {
-        $datos = $this->mevento->infoPorEvento();
-        return $datos;
-    }
+    public function antena_estadisticas($idAntena){
+      $usuario = $this->usuario;
+      if(!$this->mantena->existById($idAntena)){
+        redirect("Admin");
+      }
+      $nombreAntena = $this->mantena->getNombre($idAntena);
+      $data = array("title"=>"Admin Dashboard");
+      $data["name"] = $usuario->nombre." ".$usuario->appat;
+      $data["nombreAntena"] = $nombreAntena;
+
+      $reportes = $this->mantena->getReportes($idAntena);
+      foreach ($reportes as $r) {
+        $strJsonFileContents = file_get_contents($r->filepath);
+        // Convert to array
+        $array = json_decode($strJsonFileContents, true);
+        $r->ts = $array["Timestamp"];
+        $r->values = $array["Values"];
+      }
+      $data["reportes"] = $reportes;
+      $this->load->view('headers/vheaderuser',$data);
+      $this->load->view('SuperAdmin/vEstadisticas');
+      $this->load->view('footers/vfooter');
+  }
 }
