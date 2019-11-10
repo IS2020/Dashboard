@@ -56,7 +56,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['Admin/'] = 'Admin/eventos_index';
 $route['Admin/crear/'] = 'Admin/antenas_crear';
-
+$route['Admin/antenas'] = 'Admin/antenas_index';
+$route['Admin/estadisticas/(:any)'] = 'Admin/antena_estadisticas/$1';
 // POST
 
 $route['Admin/ajax_crear_antena'] = 'Admin/ajax_crear_antena';

@@ -8,7 +8,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>GesEventos</title>
+	<title>GesSismos</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by freshdesignweb.com" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -26,7 +26,7 @@
 	<meta name="twitter:card" content="" />
 
 	<!-- <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet"> -->
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="<?=base_url()?>assets/user_guide/_static/main/css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -54,9 +54,9 @@
 
 	</head>
 	<body>
-		
+
 	<div class="ubea-loader"></div>
-	
+
 	<div id="page">
 
 	<div id="ubea-hero" class="js-fullheight"  data-section="home">
@@ -67,7 +67,7 @@
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner">
-		   					<h2>Bienvenido al Sistema Gestor de Eventos</h2>
+		   					<h2>Bienvenido al Sistema de alerta sísmica</h2>
 		   					<p><a href="Login" class="btn btn-primary btn-lg">Iniciar Sesion</a></p>
 		   				</div>
 		   			</div>
@@ -78,8 +78,7 @@
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner">
-		   					<h2>Administra eficazmente tus eventos</h2>
-		   					<p><a href="Login" class="btn btn-primary btn-lg">Administrador</a></p>
+		   					<h2>Recibe notificaciones a tu celular</h2>
 		   				</div>
 		   			</div>
 		   		</div>
@@ -89,7 +88,7 @@
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner">
-		   					<h2>Descubre una nueva forma de asistir a tus eventos</h2>
+		   					<h2>Descubre esta nueva plataforma, que te ayuda a estar prevenido ante siniestros.</h2>
 		   				</div>
 		   			</div>
 		   		</div>
@@ -106,9 +105,9 @@
 					<div class="col-md-6">
 						<div class="ubea-heading">
 							<h2 class="ubea-left">Servicios</h2>
-							<p class="justify">De manera innovadora, se simula la interacci&oacute;n de los eventos 
-								en la vida cotidiana manteniendo la comodidad de los usuarios
-							para asistir a sus compromisos.</p>
+							<p class="justify">El objetivo principal es brindar una alternativa a las personas
+							que no pueden adquirir una alerta sismica, una forma de recibir notificaciones
+						en caso de algun sismo, utilizando unicamente un teléfono inteligente.</p>
 						</div>
 					</div>
 				</div>
@@ -119,13 +118,13 @@
 							<div class="col-md-12">
 								<div class="feature-left">
 									<span class="icon">
-										<i class="icon-pencil"></i>
+										<i class="icon-bell"></i>
 									</span>
 									<div class="feature-copy">
-										<h3>Planea tus eventos</h3>
+										<h3>Recibe alertas</h3>
 										<p class="justify">
-											Personaliza tus eventos de forma
-											accesible y planea los detalles m&iacute;nimos que requieras.
+											Recibe alertas a tu celular, sobre posibles sismos donde quiera
+											que te encuentres*
 										</p>
 									</div>
 								</div>
@@ -133,31 +132,14 @@
 							<div class="col-md-12">
 								<div class="feature-left">
 									<span class="icon">
-										<i class="icon-monitor"></i>
+										<i class="icon-network"></i>
 									</span>
 									<div class="feature-copy">
-										<h3>Nivel del acceso al Sistema</h3>
+										<h3>Red de geófonos</h3>
 										<p class="justify">
-										Administra los eventos con un privilegio especializado de manera
-										que se encuentre limitado el permiso de alteraci&oacute;n de estos registros,
-										los eventos se almacenar&aacute;n fuera del alcance de cualquier usuario para
-										su estabilidad y su seguridad para el sistema.
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="feature-left">
-									<span class="icon">
-										<i class="icon-cog"></i>
-									</span>
-									<div class="feature-copy">
-										<h3>Configuraci&oacute;n</h3>
-										<p class="justify">
-											El sistema despliega una &uacute;til configuraci&oacute;n para el
-											usuario que se mueva por el sitio, con facilidad podr&aacute;
-											acceder a su men&uacute; de ajustes con accesos de m&uacute;ltiples
-											herramientas necesarias.
+										Este sistema se nutre de la colaboracion de instituciones escolares y privadas
+										para hacer una red de geófonos, por lo que si quieres ser parte del proyecto
+										puedes contactarnos.
 										</p>
 									</div>
 								</div>
@@ -172,42 +154,11 @@
 										<i class="icon-pie-chart"></i>
 									</span>
 									<div class="feature-copy">
-										<h3>Estad&iacute;sticas de los eventos</h3>
+										<h3>Estadísticas</h3>
 										<p class="justify">
-											Para asegurar que el sistema retribuya una cantidad de
-											informaci&oacute;n, tenemos el acceso a las estad&iacute;sticas de evento
-											donde este retroalimenta las cuantificaciones cualitativas
-											de relevancia para obtener.
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="feature-left">
-									<span class="icon">
-										<i class="icon-file"></i>
-									</span>
-									<div class="feature-copy">
-										<h3>Turnaround Consulting</h3>
-										<p class="justify">
-											Si has realizado el evento, los usuarios que requieran la
-											informaci&oacute;n respecto a su asistencia, tendr&aacute; una documento
-											PDF que resulte v&aacute;lido para garantizar su lugar.
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="feature-left">
-									<span class="icon">
-										<i class="icon-layers"></i>
-									</span>
-									<div class="feature-copy">
-										<h3>Bonds & Commodities</h3>
-										<p class="justify">
-											Comodidad en el sistema que intente ofrecer una buena experiencia
-											de usuario para que sea amigable y que resullte de confianza
-											en el mercado de aplicaciones de este tipo de &iacute;ndole.
+											El sistema proporciona informacion histórica de los
+											principales sismos detectados por la red de geófonos,
+											esto para su posterior estudio.
 										</p>
 									</div>
 								</div>
@@ -218,7 +169,7 @@
 			</div>
 		</div>
 
-        
+
 		<div class="ubea-section" id="ubea-faq" data-section="faq">
 			<div class="ubea-container">
 				<div class="row">
@@ -241,9 +192,9 @@
 							</div>
 							<div class="ubea-accordion-content">
 								<div class="inner">
-									<p class="justify">Usamos la tecnolog&iacute;a para ofrecer un servicio 
-										pr&aacute;ctico para administrar los eventos que puedan referir
-										a temas escolares y acad&eacute;micos.
+									<p class="justify">Usamos una red de geófonos para poder detectar
+										movimientos sismicos y con ello poder notificar a la población,
+										con el fin de que tomen precauciones.
 									</p>
 								</div>
 							</div>
@@ -255,9 +206,8 @@
 							</div>
 							<div class="ubea-accordion-content">
 								<div class="inner">
-										<p class="justify">Sí, efectivamente debes de registrarte para 
-											usar el sistema, tanto los usuarios administradores que registren
-											eventos y los gestionen para la asistencia de los usuarios invitados.
+										<p class="justify">Sí, efectivamente debes de registrarte para
+											usar el sistema, de lo contrario no podras recibir notificaciones.
 										</p>
 								</div>
 							</div>
@@ -265,14 +215,12 @@
 						<div class="ubea-accordion">
 							<div class="ubea-accordion-heading">
 								<div class="icon"><i class="icon-cross"></i></div>
-								<h3>¿C&oacute;mo creo los eventos?</h3>
+								<h3>¿C&oacute;mo me suscribo?</h3>
 							</div>
 							<div class="ubea-accordion-content">
 								<div class="inner">
-										<p class="justify">Debes estar registrado como administrador para
-											que &eacute;ste permiso te brinde los privilegios para generar eventos y
-											su debida personalizaci&oacute;n, una vez que el evento haya sido creado,
-											los usuarios deber&aacute;n solicitar la invitaci&oacute;n para asistir a los eventos.	
+										<p class="justify">Debes tener una cuenta creada, descargar la app
+											y activar las notificaciones.
 										</p>
 								</div>
 							</div>
@@ -284,14 +232,12 @@
 						<div class="ubea-accordion">
 							<div class="ubea-accordion-heading">
 								<div class="icon"><i class="icon-cross"></i></div>
-								<h3>¿Qu&eacute; eventos gestionamos?</h3>
+								<h3>¿Qu&eacute; sismos detectamos?</h3>
 							</div>
 							<div class="ubea-accordion-content">
 								<div class="inner">
 										<p class="justify">
-											Pr&aacute;cticamente podr&aacute;s personalizar a tu gusto todos los eventos
-											escolares que requieras, para que los invitados quieran asistir,
-											deber&aacute;n acudir dir&eacute;ctamente al lugar.
+											Se detectan movimientos teluricos desde magnitud 2.0
 										</p>
 								</div>
 							</div>
@@ -299,14 +245,14 @@
 						<div class="ubea-accordion">
 							<div class="ubea-accordion-heading">
 								<div class="icon"><i class="icon-cross"></i></div>
-								<h3>¿Cu&aacute;ndo puedo asistir a un evento?</h3>
+								<h3>¿Detectan todos los sismos?</h3>
 							</div>
 							<div class="ubea-accordion-content">
 								<div class="inner">
 										<p class="justify">
-											Todos los eventos que hayan sido creados, se mostrar&aacute;n
-											dentro del sistema para su posible solicitud de asistencia
-											y poder acceder al evento.
+											Debido a que el sistema se nutre con la ayuda de la Red
+											sísmica, no podemos detectar a tiempo todos los sismos, por
+											lo que puedes ayudanos a hacer crecer este sistema.
 										</p>
 								</div>
 							</div>
@@ -329,18 +275,8 @@
 		</div>
 
 	</div>
-    
-    <div id="ubea-blog" data-section="about">
-		<div class="ubea-container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center ubea-heading">
-					<h2>Acerca de nosotros</h2>
-					<p class="center">Equipo de Desarrollo JackCloudman S.A. de C.V.</p>
-				</div>
-			</div>
-	    </div>
-    </div>
-      
+
+
 	<div id="ubea-contact" data-section="contact" class="ubea-cover ubea-cover-xs" style="background-image:url(<?=base_url()?>assets/user_guide/_static/main/images/img_bg_2.jpg);">
 		<div class="overlay"></div>
 		<div class="ubea-container">
@@ -348,8 +284,8 @@
 				<div class="display-t">
 					<div class="display-tc">
 						<div class="col-md-12">
-							<h3>Si tienes dudas acerca, no dudes en contactarnos a trav&eacute;s 
-								de: <a href="#">info@jackcloudman.com</a></h3>
+							<h3>Si tienes dudas acerca, no dudes en contactarnos a trav&eacute;s
+								de: <a href="#">contacto@jackcloudman.com</a></h3>
 						</div>
 					</div>
 				</div>
@@ -359,11 +295,11 @@
 
 	<footer id="ubea-footer" role="contentinfo">
 		<div class="ubea-container">
-			
+
 			<div class="row copyright">
 				<div class="col-md-12">
 					<p class="pull-left">
-						<small class="block"></small> 
+						<small class="block"></small>
 						<small class="block"><a href="https://www.freshdesignweb.com/" target="_blank"></a></small>
 					</p>
 					<p class="pull-right">
@@ -384,7 +320,7 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
-	
+
 	<!-- jQuery -->
 	<script src="<?=base_url()?>assets/user_guide/_static/main/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -407,4 +343,3 @@
 
 	</body>
 </html>
-

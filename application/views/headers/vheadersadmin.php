@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>GesEventos | <?=$title?></title>
+  <title>GesSismos | <?=$title?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -76,9 +76,9 @@ desired effect
     <!-- Logo -->
     <a href="<?=base_url()?>Admin" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>G</b>ES</span>
+      <span class="logo-mini"><b>G</b>S</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Ges</b>Eventos</span>
+      <span class="logo-lg"><b>Ges</b>Sismos</span>
     </a>
 
     <!-- Header Navbar -->
@@ -139,8 +139,8 @@ desired effect
             <span>Estaciones</span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?base_url()?>Admin/antenas_crear"><i class="fa fa-plus"></i> Nueva estacion</a></li>
-            <li><a href="#"><i class="fa fa-list"></i> Lista de estaciones</a></li>
+            <li><a href="<?=base_url()?>Admin/antenas_crear"><i class="fa fa-plus"></i> Nueva estacion</a></li>
+            <li><a href="<?=base_url()?>Admin/antenas"><i class="fa fa-list"></i> Lista de estaciones</a></li>
           </ul>
         </li>
         <li class="treeview">
