@@ -48,7 +48,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?=base_url()?>Documentacion"><i class="fa fa-book"></i> Documentacion</a></li>
+            <li><a href="#"><i class="fa fa-book"></i> Documentacion</a></li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
